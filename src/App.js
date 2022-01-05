@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+
+import Nav from "./components/Nav.js";
+import Welcome from "./components/Welcome.js";
+import UserProfile from "./components/Profile/UserProfile";
+import GroupOverview from "./components/Group/GroupOverview";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav />
+      <h1>Welcome to Game King!</h1>
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/group" element={<GroupOverview />} />
+      </Routes>
+
     </div>
   );
 }
