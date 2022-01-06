@@ -4,7 +4,7 @@ import Nav from "./components/Nav.js";
 import Welcome from "./components/Welcome.js";
 import UserProfile from "./components/Profile/UserProfile";
 import GroupOverview from "./components/Group/GroupOverview";
-import "./App.css";
+import "./styles/App.css";
 
 function App() {
   return (
