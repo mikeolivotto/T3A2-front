@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button'
+
 
 function UserProfile() {
     return (
@@ -16,7 +18,7 @@ function UserProfile() {
       <h3>Games played:</h3>
 
       <h3>[Username]'s scoreboard</h3>
-      <button>View stats</button>
+      <Button>View stats</Button>
       </>
     );
   }
