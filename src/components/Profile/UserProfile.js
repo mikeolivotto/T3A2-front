@@ -12,8 +12,8 @@ function UserProfile() {
 
       <h3>Groups you belong to:</h3>
       <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
-        <ListGroup.Item><Link to="/group">Example Group 1</Link></ListGroup.Item>
-        <ListGroup.Item><Link to="/group">Example Group 2</Link></ListGroup.Item>
+        <ListGroup.Item><Link to="/group/jkhgfioeghkjbnf">Example Group 1</Link></ListGroup.Item>
+        <ListGroup.Item><Link to="/group/5ywyuihsf784g">Example Group 2</Link></ListGroup.Item>
       </ListGroup>
 
 
