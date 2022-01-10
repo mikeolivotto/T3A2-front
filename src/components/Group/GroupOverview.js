@@ -5,12 +5,6 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 function GroupOverview() {
 
-  let handleSubmit = (event) => {
-    event.preventDefault()
-
-  // send data off for processing
-  }
-
   return (
     <>
       <h1>[Group name]</h1>
