@@ -18,13 +18,17 @@ function Welcome() {
     };
     let firebaseToken = await signIn(signInDetails).then((res) => {
       dispatch({
-        type: "updateIdToken",
-        data: res.data[0].idToken,
-      });
-      dispatch({
-        type: "setProfile",
-        data: res.data[1],
-      });
+        type: "setLoggedInUser",
+        data: res.data
+      })
+      // dispatch({
+      //   type: "setProfile",
+      //   data: res.data[1],
+      // });
+      // dispatch({
+      //   type: "updateIdToken",
+      //   data: res.data[0].idToken,
+      // });
     });
 
     return firebaseToken;

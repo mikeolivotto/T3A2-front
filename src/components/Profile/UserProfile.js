@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroup from 'react-bootstrap/ListGroup';
+import { useGlobalState } from "../../config/store";
+import { getSpecificProfile } from "../../services/apiCRUD/profileCRUD";
 
 function UserProfile() {
+  const {store,dispatch} = useGlobalState();
+  console.log(store.profileData[0])
+  // const profileId = store.profileData[0]._id
+  // getSpecificProfile(profileId, store.idToken).then((res) => console.log(res))
+  
   return (
     <> 
       <img src="./img/avatar.png" alt="user avatar"></img>
