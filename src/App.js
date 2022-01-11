@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-
+import { useReducer } from 'react'
 import Nav from "./components/Nav.js";
 import Welcome from "./components/Welcome.js";
 import SignUp from "./components/SignUp.js";
@@ -8,10 +8,19 @@ import GroupOverview from "./components/Group/GroupOverview";
 import CreateGroup from "./components/Group/CreateGroup";
 import CreateGame from "./components/Game/CreateGame";
 import "./styles/App.css";
+import { initialState } from "./config/initialState.js";
+import { stateReducer } from "./config/stateReducer.js";
+import React from "react";
+import { StateContext } from "./config/store.js";
+
 
 function App() {
+  const [ store, dispatch ] = useReducer(stateReducer, initialState)
+  
   return (
-    <div className="App">
+   <StateContext.Provider value={{store, dispatch}}>
+
+   <div className="App">
       <Nav />
       <Routes>
         <Route path="/" element={<Welcome />} />
@@ -27,6 +36,7 @@ function App() {
       </Routes>
 
     </div>
+    </StateContext.Provider>
   );
 }
 
