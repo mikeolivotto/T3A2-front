@@ -5,9 +5,8 @@ import { signIn } from "../services/apiCRUD/profileCRUD.js";
 import { useGlobalState } from "../config/store.js";
 
 function Welcome() {
-  const { store, dispatch } = useGlobalState();
+  const { dispatch } = useGlobalState();
 
-  console.log(store)
   let handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -21,14 +20,6 @@ function Welcome() {
         type: "setLoggedInUser",
         data: res.data
       })
-      // dispatch({
-      //   type: "setProfile",
-      //   data: res.data[1],
-      // });
-      // dispatch({
-      //   type: "updateIdToken",
-      //   data: res.data[0].idToken,
-      // });
     });
 
     return firebaseToken;
@@ -39,8 +30,7 @@ function Welcome() {
       <img src="./img/logo.png" alt="Game King" />
       <p className="h2">Game King</p>
       <div id="auth">
-        {/* <h1 class="h3">Sign in:</h1> */}
-
+   
         <form onSubmit={handleSubmit}>
           <Stack gap={2} className="col-8 col-md-5 col-lg-3 mx-auto">
             <label htmlFor="email">Email</label>
