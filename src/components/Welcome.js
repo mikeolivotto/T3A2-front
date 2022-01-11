@@ -1,13 +1,24 @@
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button'
 import Stack from 'react-bootstrap/Stack'
+import {signIn} from '../services/apiCRUD/profileCRUD.js'
+
 
 
 function Welcome() {
 
-    let handleSubmit = (event) => {
+    let handleSubmit = async(event) => {
       event.preventDefault()
       // send data off for processing with Firebase
+      let signInDetails = {
+        email: "user4@email.com",
+        password: "password4"
+      }
+      let firebaseToken = await signIn(signInDetails)
+      console.log(firebaseToken)
+
+      return firebaseToken
+
     }
 
     return (
