@@ -23,10 +23,12 @@ function App() {
    <div className="App">
       <Nav />
       <Routes>
-        <Route path="/" element={<Welcome />} />
+      
+        <Route path="/" element={store.idToken ? <UserProfile /> : <Welcome />} />
+        {/* <Route path="/" element={<Welcome />} /> */}
+        
         <Route path="/sign-up" element={<SignUp />} />
 
-        <Route path="/profile" element={<UserProfile />} />
         <Route path="/group/:id" element={<GroupOverview />} />
         <Route path="/create-group" element={<CreateGroup />} />
         <Route path="/new-game" element={<CreateGame />} />
