@@ -11,3 +11,11 @@ export const signIn = async(signInDetails) => {
     return tokenInfo
 }
 
+export const getSpecificProfile = async (profileId, idToken) => {
+    let response = await axios.get(process.env.REACT_APP_API+`/profiles/${profileId}`,{
+        headers: {
+            Authorization: "Bearer " + idToken 
+        }
+    })
+    return response
+}
