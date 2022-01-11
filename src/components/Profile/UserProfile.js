@@ -18,9 +18,7 @@ function UserProfile() {
   useEffect(() => {
     const profileId = store.profileData[0]._id
     getSpecificProfile(profileId, store.idToken).then((res) => dispatch({type:"setProfile",data:res}))
-  }, []) 
-  
-  // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // const [profile,games,groups,adminOf] = store.profileData
 
