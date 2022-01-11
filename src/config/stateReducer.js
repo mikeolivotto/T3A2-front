@@ -7,11 +7,6 @@ export const stateReducer = (state, action) => {
                 idToken: action.data[0].idToken,
                 profileData: action.data[1]
             }
-        case "updateIdToken":
-            return {
-                ...state,
-                idToken: action.data
-            }
         case "setProfile":
             return {
                 ...state,
