@@ -4,8 +4,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 function UserProfile() {
   return (
-    <>
-      <p>'User profile' component</p>
+    <> 
       <img src="./img/avatar.png" alt="user avatar"></img>
       {/* Need to dynamically render username and all details */}
       <h2>[Username]</h2>
