@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 import { useGlobalState } from "../../config/store";
 import { getSpecificProfile } from "../../services/apiCRUD/profileCRUD";
@@ -19,7 +20,11 @@ function UserProfile() {
 
   // const [profile,games,groups,adminOf] = store.profileData
 
-
+  let gamesPlayed = store.profileData[1] ? store.profileData[1].gamesPlayed.length : 0
+  let gamesWon = store.profileData[1] ? store.profileData[1].gamesWon.length : 0
+  let gamesWonPC = gamesWon === 0 ? 0 : (gamesWon/gamesPlayed)*100
+  let gamesLost = gamesPlayed - gamesWon
+  let gamesLostPC = gamesLost === 0 ? 0 : (gamesLost/gamesPlayed)*100
 
   return (
     <>
@@ -39,7 +44,25 @@ function UserProfile() {
       {store.profileData[1] && <UserGames />}
 
       <h3>{store.profileData[0].username}'s scoreboard</h3>
-      <Button>View stats</Button>
+      <p>Games played: { gamesPlayed }</p>
+      <p>Games won: { gamesWon } / { gamesWonPC }%</p>
+      <p>Games lost: { gamesLost } / { gamesLostPC }%</p>
+
+  
+
+      <Stack gap={2} className="col-8 col-md-5 col-lg-3 mx-auto">
+          <Button>
+            <Link to="/create-group" style={{ color: "white", textDecoration: "none" }}>
+              Create a Group
+            </Link>
+          </Button>
+
+          <Button>
+            <Link to="/join-group" style={{ color: "white", textDecoration: "none" }}>
+              Join a Group
+            </Link>
+          </Button>
+        </Stack>
     </>
   );
 }
