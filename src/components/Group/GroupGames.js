@@ -12,13 +12,10 @@ function GroupGames() {
   useEffect(() => {
     getGroupGames(groupId).then((res) => setGroupGames(res));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  console.log(groupGames.data)
   
   let gameArray = []
 
   if (groupGames.data) {
-    console.log(groupGames.data)
     gameArray = groupGames.data
   }
 
