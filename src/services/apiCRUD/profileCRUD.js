@@ -1,5 +1,15 @@
 import axios from 'axios';
 
+export const signUp = async (signUpDetails) => {
+    let response = await axios.post(process.env.REACT_APP_API+'/profiles/sign-up', signUpDetails)
+    return response
+}
+
+export const checkUniqueUsername = async (username) => {
+    let response = await axios.get(process.env.REACT_APP_API+'/profiles/unique', {username:username})
+    return response 
+}
+
 
 export const signIn = async(signInDetails) => {
     let {email, password} = signInDetails
