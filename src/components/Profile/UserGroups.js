@@ -1,4 +1,5 @@
 import { useGlobalState } from "../../config/store";
+import { Link } from "react-router-dom";
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function UserGroups() {
@@ -9,7 +10,9 @@ function UserGroups() {
 
 
   const groupsList = groupArray.map((group) => {
-    return <ListGroup.Item key={ group._id }>{ group.groupName }</ListGroup.Item>
+    return <ListGroup.Item key={ group._id }>
+      <Link to={`/group/${group._id}`}>{ group.groupName }</Link>
+      </ListGroup.Item>
   })
 
 
