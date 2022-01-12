@@ -7,25 +7,29 @@ import { useGlobalState } from "../../config/store";
 function CreateGroup() {
   const { store, dispatch } = useGlobalState();
 
-  console.log(store);
+  console.log("profile data:", store.profileData);
 
   let handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target);
     // send data off for processing
+
     let groupDetails = {
       groupName: event.target.groupName.value,
       adminId: store.profileData[0]._id,
       members: event.target.members.value,
     };
 
-    let createdGroup = createNewGroup(groupDetails).then((res) => {
-      dispatch({
-        type: "setGroup",
-        data: res.data,
-      });
-    });
+    console.log("group details name:", groupDetails.groupName);
+    console.log("group members:", groupDetails.members);
 
+    let createdGroup = createNewGroup(groupDetails, store.idToken).then(
+      (res) => {
+        dispatch({
+          type: "setGroup",
+          data: res.data,
+        });
+      }
+    );
     return createdGroup;
   };
 
@@ -44,6 +48,9 @@ function CreateGroup() {
             <br />
             <em>[somehow handle adding members in]</em>
           </p>
+          {store.groupData ? (
+            <p>Here's your group name: {store.groupData.groupName}</p>
+          ) : null}
 
           <Button type="submit">Submit</Button>
 
