@@ -12,6 +12,7 @@ import { initialState } from "./config/initialState.js";
 import { stateReducer } from "./config/stateReducer.js";
 import React from "react";
 import { StateContext } from "./config/store.js";
+import JoinGroup from "./components/Group/JoinGroup.js";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         
         <Route path="/group/:id" element={<GroupOverview />} />
         <Route path="/create-group" element={<CreateGroup />} />
+        <Route path="/join-group" element={<JoinGroup />} />
         <Route path="/new-game" element={<CreateGame />} />
 
 

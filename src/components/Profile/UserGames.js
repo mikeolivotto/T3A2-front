@@ -5,7 +5,7 @@ function UserGames() {
 
   const { store } = useGlobalState()
 
-  const gamesArray = store.profileData[1]
+  const gamesArray = store.profileData[1].gamesPlayed
 
 
 
