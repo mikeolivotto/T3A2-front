@@ -34,7 +34,7 @@ function UserProfile() {
       <p>{store.profileData[0].firstName + " " + store.profileData[0].lastName}</p>
 
       <h3>Groups you belong to:</h3>
-      {store.profileData[2] && <UserGroups />}
+      {store.profileData[2] && <UserGroups/>}
 
 
       <h3>Pending Group Invites:</h3>

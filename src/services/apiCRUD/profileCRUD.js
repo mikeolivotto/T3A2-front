@@ -27,6 +27,5 @@ export const getSpecificProfile = async (profileId, idToken) => {
             authorization: idToken 
         }
     })
-    console.log(`This comes from getSpecificProfile: ${response}`)
     return response
 }
