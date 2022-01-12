@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 export const signUp = async (signUpDetails) => {
-    // let {email,username,firstName,lastName,password,confirmPassword} = signUpDetails
     let response = await axios.post(process.env.REACT_APP_API+'/profiles/sign-up', signUpDetails)
-    console.log(response)
     return response
 }
 

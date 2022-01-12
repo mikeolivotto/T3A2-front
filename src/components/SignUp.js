@@ -19,25 +19,25 @@ function SignUp() {
       lastName: lastName.value,
       password: password.value,
     }
-    // console.log(signUpDetails)
 
     // queries database if username is unique 
     let uniqueUsername = await checkUniqueUsername(username.value)
-    // console.log(uniqueUsername.data.unique)
     // checks username is unique and passoword is confirmed
     if (uniqueUsername && (password.value === confirmPassword.value)) {
       // send data off for processing with Firebase / creating user in the db
-      console.log("form has passed validation checks <----------")
+      console.log("sign-up form has passed validation checks <----------")
       signUp(signUpDetails).then((res) => {
         dispatch({
           type: "setLoggedInUser",
           data: res.data
         })
+        // navigate to home route once global state is set.
         navigate("/")
       }).catch(err => {
         console.log("sign-up failed: ", err)
       })
     } else {
+      // Form validation feedback goes here.
       if (!uniqueUsername) console.log("Username is not unique <--------");
       if (password.value !== confirmPassword.value) console.log("Please Confirm your password correctly");
     }
@@ -46,9 +46,9 @@ function SignUp() {
   return (
     <div>
       <img src="./img/logo.png" alt="Game King" />
-      <p class="h2">Game King</p>
+      <p className="h2">Game King</p>
       <div id="auth">
-        <h1 class="h3">Sign up:</h1>
+        <h1 className="h3">Sign up:</h1>
 
         <form onSubmit={handleSubmit}>
           <Stack gap={1} className="col-8 col-md-5 col-lg-3 mx-auto">
