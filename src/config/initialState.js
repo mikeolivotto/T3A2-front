@@ -1,4 +1,5 @@
 export const initialState = {
-    idToken: null,
-    profileData: null
-}
+  idToken: null,
+  profileData: null,
+  groupData: null,
+};
