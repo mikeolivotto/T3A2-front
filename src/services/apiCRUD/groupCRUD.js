@@ -29,3 +29,8 @@ export const getSpecificGroup = async (groupId, idToken) => {
   );
   return response;
 };
+
+export const getGroupGames = async(groupId) => {
+  let response = await axios.get(process.env.REACT_APP_API + `/group/${groupId}/games`)
+  return response
+}

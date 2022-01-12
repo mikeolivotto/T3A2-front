@@ -5,13 +5,18 @@ import ListGroup from "react-bootstrap/ListGroup";
 import React, { useState, useEffect } from "react";
 import { getSpecificGroup } from "../../services/apiCRUD/groupCRUD";
 import { useGlobalState } from "../../config/store";
+import GroupGames from "./GroupGames";
 
 function GroupOverview() {
   const { store } = useGlobalState();
-  const [groupData, setGroupData] = useState({});
+  const [groupData, setGroupData] = useState([]);
+  
+  let groupName = null
 
-  console.log(groupData.data);
-  let { groupName } = groupData.data || "group name";
+  if(groupData.data) {
+    groupName = groupData.data.groupName
+  } 
+
 
   let groupId = useParams().id;
 
@@ -22,9 +27,9 @@ function GroupOverview() {
   return (
     <>
       <h1>{groupName}</h1>
-      <h2>Group overview</h2>
 
       <h3>Members</h3>
+
       <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
         <ListGroup.Item>[player name]</ListGroup.Item>
         <ListGroup.Item>[player name]</ListGroup.Item>
@@ -34,13 +39,7 @@ function GroupOverview() {
       </ListGroup>
 
       <h3>Games Played</h3>
-      <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
-        <ListGroup.Item>[Game]</ListGroup.Item>
-        <ListGroup.Item>[Game]</ListGroup.Item>
-        <ListGroup.Item>[Game]</ListGroup.Item>
-        <ListGroup.Item>[Game]</ListGroup.Item>
-        <ListGroup.Item>[Game]</ListGroup.Item>
-      </ListGroup>
+      <GroupGames />
 
       <Stack gap={2} className="col-8 col-md-5 col-lg-3 mx-auto">
         <Button>
