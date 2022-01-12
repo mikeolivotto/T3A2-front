@@ -25,7 +25,7 @@ function UserGroups() {
   }
 
     return (
-      <div style={{maxHeight: "20vh", overflowY: "scroll"}}>
+      <div style={{maxHeight: "20vh", overflowY: "auto"}}>
       { groups() }
       </div>
     );
