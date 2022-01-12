@@ -28,7 +28,7 @@ function App() {
         {/* <Route path="/" element={<Welcome />} /> */}
         
         <Route path="/sign-up" element={<SignUp />} />
-
+        
         <Route path="/group/:id" element={<GroupOverview />} />
         <Route path="/create-group" element={<CreateGroup />} />
         <Route path="/new-game" element={<CreateGame />} />
