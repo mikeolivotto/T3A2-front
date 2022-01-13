@@ -9,11 +9,28 @@ import ListGroup from 'react-bootstrap/ListGroup';
 function CreateGroup() {
   const { store, dispatch } = useGlobalState();
 
-  const [ members, setMembers ] = useState([])
+  // DELETE THE INITIAL STATE AND SET AS EMPTY ARRAY!
+  const [ members, setMembers ] = useState(["bill", "hayley"])
 
   console.log("profile data:", store.profileData);
 
-  let handleSubmit = (event) => {
+  console.log(`admin username = ${store.profileData[0].username}`)
+  // console.log(store)
+
+  const removeOnClick = (event) => {
+    const tempMembersArray = [...members]
+    const indexOfMember = tempMembersArray.indexOf(event.target.value)
+    tempMembersArray.splice(indexOfMember,1)
+    setMembers(tempMembersArray)
+  }
+
+  const memberList = members.map((member) => {
+    return (
+      <ListGroup.Item key={member}>{ member } <Button variant="link" value={member} onClick={removeOnClick}>Remove</Button></ListGroup.Item>
+    )
+  })
+
+  const handleSubmit = (event) => {
     event.preventDefault();
     // send data off for processing
 
@@ -48,7 +65,8 @@ function CreateGroup() {
 
         <p>Group members</p>
         <ListGroup>
-          <ListGroup.Item>Current User (admin)</ListGroup.Item>
+          <ListGroup.Item>You - {store.profileData[0].username} (Group admin) </ListGroup.Item>
+          { memberList }
         </ListGroup>
 
 
