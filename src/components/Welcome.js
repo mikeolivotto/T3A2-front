@@ -18,42 +18,42 @@ function Welcome() {
     let firebaseToken = await signIn(signInDetails).then((res) => {
       dispatch({
         type: "setLoggedInUser",
-        data: res.data
-      })
+        data: res.data,
+      });
     });
 
     return firebaseToken;
   };
 
   return (
-    <div>
-      <img src="./img/logo.png" alt="Game King" />
-      <p className="h2">Game King</p>
-      <div id="auth">
-   
-        <form onSubmit={handleSubmit}>
-          <Stack gap={2} className="col-8 col-md-5 col-lg-3 mx-auto">
-            <label htmlFor="email">Email</label>
-            <input type="text" name="email" id="email" />
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
-
-            <Button type="submit">Log in</Button>
-          </Stack>
-        </form>
-        <span>-</span>
-        <Stack gap={2} className="col-8 col-md-5 col-lg-3 mx-auto">
-          <Button variant="light">
-            <Link
-              to="/sign-up"
-              style={{ color: "black", textDecoration: "none" }}
-            >
-              Sign up
-            </Link>
-          </Button>
-        </Stack>
+    <>
+      <div className="container rounded col-8 col-md-5 col-lg-5 mx-auto p-4">
+        <div className="d-flex justify-content-center">
+          <img src="./img/gmlogo2.png" alt="Game King" className="img-fluid" />
+        </div>
+        <div id="auth">
+          <form onSubmit={handleSubmit} className="py-4">
+            <Stack gap={2}>
+              <label htmlFor="email">Email</label>
+              <input type="text" name="email" id="email" />
+              <label htmlFor="password">Password</label>
+              <input type="password" name="password" id="password" />
+            </Stack>
+            <Stack direction="horizontal" gap={3} className="pt-4">
+              <Button className="button-login px-3" type="submit">
+                Log in
+              </Button>
+              <Button variant="light" className="button-signup px-3">
+                <Link to="/sign-up" className="signup-link">
+                  Sign up
+                </Link>
+              </Button>
+            </Stack>
+          </form>
+        </div>
       </div>
-    </div>
+      <div className="container"></div>
+    </>
   );
 }
 
