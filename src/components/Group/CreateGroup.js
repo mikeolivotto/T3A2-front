@@ -16,21 +16,26 @@ function CreateGroup() {
     let groupDetails = {
       groupName: event.target.groupName.value,
       adminId: store.profileData[0]._id,
-      members: event.target.members.value,
+      joinCode: event.target.joinCode.value,
     };
 
     console.log("group details name:", groupDetails.groupName);
-    console.log("group members:", groupDetails.members);
+    console.log("group join code:", groupDetails.joinCode);
 
     let createdGroup = createNewGroup(groupDetails, store.idToken).then(
       (res) => {
-        dispatch({
-          type: "setGroup",
-          data: res.data,
-        });
-        navigate(`/group/${res.data._id}`);
+        // Check response from server for any errors with unique join code or idToken
+        if (res.data.message) {
+          console.log(`Error: ${res.data.message}`)
+        } else {
+          dispatch({
+            type: "setGroup",
+            data: res.data,
+          });
+          navigate(`/group/${res.data._id}`);
+        }
       }
-    );
+    ).catch(error => console.log(`Error has occured when creating new group: \n${error}`));
     return createdGroup;
   };
 
@@ -42,16 +47,16 @@ function CreateGroup() {
         <Stack gap={1} className="col-8 col-md-5 col-lg-3 mx-auto">
           <label htmlFor="groupName">Group name</label>
           <input type="text" name="groupName" id="groupName" />
-          <label htmlFor="members">Group members</label>
-          <input type="text" name="members" id="members" />
-          <p>
+          <label htmlFor="joinCode">Join code</label>
+          <input type="text" name="joinCode" id="joinCode" />
+          {/* <p>
             Invite members
             <br />
             <em>[somehow handle adding members in]</em>
           </p>
           {store.groupData ? (
             <p>Here's your group name: {store.groupData.groupName}</p>
-          ) : null}
+          ) : null} */}
 
           <Button type="submit">Submit</Button>
 
