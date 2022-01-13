@@ -7,6 +7,7 @@ import UserProfile from "./components/Profile/UserProfile";
 import GroupOverview from "./components/Group/GroupOverview";
 import CreateGroup from "./components/Group/CreateGroup";
 import CreateGame from "./components/Game/CreateGame";
+import GameInPlay from "./components/Game/GameInPlay";
 import "./styles/App.css";
 import { initialState } from "./config/initialState.js";
 import { stateReducer } from "./config/stateReducer.js";
@@ -34,6 +35,7 @@ function App() {
         <Route path="/create-group" element={<CreateGroup />} />
         <Route path="/join-group" element={<JoinGroup />} />
         <Route path="/group/:id/new-game" element={<CreateGame />} />
+        <Route path="/game/" element={<GameInPlay />} />
 
 
 

@@ -1,15 +1,16 @@
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useGlobalState } from "../../config/store";
 import React, { useState } from "react";
 import Alert from 'react-bootstrap/Alert'
 
 function CreateGame() {
+  const navigate = useNavigate()
+  let groupId = useParams().id;
+
   const { dispatch } = useGlobalState();
-
   const [gameName, setGameName] = useState(null)
-
   const [increments, setIncrements] = useState({
     1: false,
     2: false,
@@ -22,10 +23,7 @@ function CreateGame() {
     9: false,
     10: false
   });
-
   const [warning, setWarning] = useState(false)
-
-  let groupId = useParams().id;
 
   let handleChange = async (event) => {
     if (event.target.id === "gameName" && (event.target.value).length >= 1) {
@@ -65,8 +63,7 @@ function CreateGame() {
         }
       })
     }
-
-    
+    navigate("/game")
   };
 
   const pointsList = Object.keys(increments).map((increment) => {
