@@ -1,12 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createNewGroup } from "../../services/apiCRUD/groupCRUD";
 import { useGlobalState } from "../../config/store";
 
 function CreateGroup() {
   const { store, dispatch } = useGlobalState();
-
+  const navigate = useNavigate()
   console.log("profile data:", store.profileData);
 
   let handleSubmit = (event) => {
@@ -28,6 +28,7 @@ function CreateGroup() {
           type: "setGroup",
           data: res.data,
         });
+        navigate(`/group/${res.data._id}`);
       }
     );
     return createdGroup;
