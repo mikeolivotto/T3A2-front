@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createNewGroup } from "../../services/apiCRUD/groupCRUD";
 import { useGlobalState } from "../../config/store";
 import React, { useState } from "react";
@@ -8,10 +8,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 function CreateGroup() {
   const { store, dispatch } = useGlobalState();
-
-  // DELETE THE INITIAL STATE AND SET AS EMPTY ARRAY!
-  const [ members, setMembers ] = useState(["bill", "hayley"])
-
+  const [members, setMembers] = useState(["bill", "jean"])
+  const navigate = useNavigate()
   console.log("profile data:", store.profileData);
 
   console.log(`admin username = ${store.profileData[0].username}`)
@@ -49,6 +47,7 @@ function CreateGroup() {
           type: "setGroup",
           data: res.data,
         });
+        navigate(`/group/${res.data._id}`);
       }
     );
     return createdGroup;
