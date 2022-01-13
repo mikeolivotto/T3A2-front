@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import Alert from 'react-bootstrap/Alert'
 
 function CreateGame() {
-  const { store, dispatch } = useGlobalState();
+  const { dispatch } = useGlobalState();
 
   const [gameName, setGameName] = useState(null)
 
@@ -26,14 +26,8 @@ function CreateGame() {
   const [warning, setWarning] = useState(false)
 
   let groupId = useParams().id;
-  
-  // console.log(store);
-  console.log(`warning: ${warning}`)
-
-
 
   let handleChange = async (event) => {
-    console.log(event.target.value);
     if (event.target.id === "gameName" && (event.target.value).length >= 1) {
       setWarning(false)
       setGameName(event.target.value);
@@ -56,14 +50,20 @@ function CreateGame() {
       increments[point] === true && pointsArray.push(point)
     }
 
-    console.log(`pointsArray.length = ${pointsArray.length}`)
-    console.log(`gameName = ${Boolean(gameName)}`)
-
     // if game name is empty or no point increments are set, warn user
     if ((Boolean(gameName) === false) || (pointsArray.length === 0)) {
       setWarning(true)
     } else {
-      console.log("good to go")
+      dispatch({
+        type: "setGame",
+        data: {
+          gameName: gameName,
+          groupId: groupId,
+          gameRules: {
+            pointIncrements: pointsArray
+          }
+        }
+      })
     }
 
     
