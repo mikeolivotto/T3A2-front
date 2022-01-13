@@ -44,7 +44,7 @@ function GroupOverview() {
       <Stack gap={2} className="col-8 col-md-5 col-lg-3 mx-auto">
         <Button>
           <Link
-            to="/new-game"
+            to={`/group/${groupId}/new-game`}
             style={{ color: "white", textDecoration: "none" }}
           >
             Start a new game

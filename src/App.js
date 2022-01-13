@@ -33,7 +33,7 @@ function App() {
         <Route path="/group/:id" element={<GroupOverview />} />
         <Route path="/create-group" element={<CreateGroup />} />
         <Route path="/join-group" element={<JoinGroup />} />
-        <Route path="/new-game" element={<CreateGame />} />
+        <Route path="/group/:id/new-game" element={<CreateGame />} />
 
 
 
