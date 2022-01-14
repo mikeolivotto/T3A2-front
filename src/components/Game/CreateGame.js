@@ -26,8 +26,6 @@ function CreateGame() {
   const [warning, setWarning] = useState(false)
 
   let handleChange = async (event) => {
-    
-    console.log(event.target.type)
 
     if (event.target.id === "gameName") {
 
@@ -38,9 +36,7 @@ function CreateGame() {
         setWarning(true)
         setGameName(null);
       }
-
     } else if (event.target.type === "checkbox") {
-      console.log(`checked: ${event.target.checked}`)
       setWarning(false)
       setIncrements({
         ...increments,
@@ -58,9 +54,6 @@ function CreateGame() {
     for (const point in increments) {
       increments[point] === true && pointsArray.push(point)
     }
-
-    console.log(`gameName boolean = ${Boolean(gameName)}`)
-
 
     // if game name is empty or no point increments are set, warn user
     if ((Boolean(gameName) === false) || (pointsArray.length === 0)) {
