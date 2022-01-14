@@ -27,7 +27,7 @@ function Welcome() {
 
   return (
     <>
-      <div className="container rounded col-8 col-md-5 col-lg-5 mx-auto p-4">
+      <div className="container-box rounded col-8 col-md-5 col-lg-5 mx-auto p-4">
         <div className="d-flex justify-content-center">
           <img src="./img/gmlogo2.png" alt="Game King" className="img-fluid" />
         </div>
