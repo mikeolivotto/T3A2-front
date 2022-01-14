@@ -26,10 +26,21 @@ function CreateGame() {
   const [warning, setWarning] = useState(false)
 
   let handleChange = async (event) => {
-    if (event.target.id === "gameName" && (event.target.value).length >= 1) {
-      setWarning(false)
-      setGameName(event.target.value);
-    } else if ((event.target.value > 0) && (event.target.value <= 10)) {
+    
+    console.log(event.target.type)
+
+    if (event.target.id === "gameName") {
+
+      if ((event.target.value).length >= 1) {
+        setWarning(false)
+        setGameName(event.target.value);
+      } else {
+        setWarning(true)
+        setGameName(null);
+      }
+
+    } else if (event.target.type === "checkbox") {
+      console.log(`checked: ${event.target.checked}`)
       setWarning(false)
       setIncrements({
         ...increments,
@@ -48,6 +59,9 @@ function CreateGame() {
       increments[point] === true && pointsArray.push(point)
     }
 
+    console.log(`gameName boolean = ${Boolean(gameName)}`)
+
+
     // if game name is empty or no point increments are set, warn user
     if ((Boolean(gameName) === false) || (pointsArray.length === 0)) {
       setWarning(true)
@@ -62,8 +76,8 @@ function CreateGame() {
           }
         }
       })
+      navigate("/game")
     }
-    navigate("/game")
   };
 
   const pointsList = Object.keys(increments).map((increment) => {
