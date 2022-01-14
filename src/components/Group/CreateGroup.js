@@ -9,7 +9,7 @@ import { getAllUsernames } from "../../services/apiCRUD/profileCRUD";
 
 function CreateGroup() {
   const { store, dispatch } = useGlobalState();
-  const [members, setMembers] = useState(["bill", "jean"]);
+  const [members, setMembers] = useState([]);
   const [profileList, setProfileList] = useState([])
 
   const [filter, setFilter] = useState("");
@@ -72,6 +72,10 @@ function CreateGroup() {
       adminId: store.profileData[0]._id,
       joinCode: event.target.joinCode.value,
       members: members
+
+      // suggest we set 'members' to an empty array, and add a 'pendingMembers' key (see below) - Mike
+      // members: []
+      // pendingMembers: members
     };
 
     console.log("group details name:", groupDetails.groupName);
@@ -115,8 +119,6 @@ function CreateGroup() {
 
           <label htmlFor="searchForPlayers">Search for players</label>
           <input type="text" name="searchForPlayers" id="searchForPlayers" onChange={handleChange} />
-
-          <p>Invite members</p>
           
           {
           (profileList.length === 0) ? 
@@ -137,33 +139,9 @@ function CreateGroup() {
           </div>
           }
 
-
-          <p>Suggested functionality for MVP (by Mike) :</p>
-          <ul>
-            <li>
-              Render a{" "}
-              <a href="https://www.w3schools.com/tags/tag_select.asp">
-                'select' drop-down
-              </a>{" "}
-              of all registered players
-            </li>
-            <li>
-              Each time you select a player, they are added to a local state for
-              "groupMembers"
-            </li>
-            <li>
-              After adding a member, they are added to a List of group members,
-              with a "remove" option next to their name
-            </li>
-            <li>
-              Once happy with the group, onSubmit sends a post request to api to
-              create new group
-            </li>
-          </ul>
-
           {store.groupData ? (
             <p>Here's your group name: {store.groupData.groupName}</p>
-          ) : null} */}
+          ) : null} 
 
           <Button type="submit">Submit</Button>
 

@@ -6,17 +6,25 @@ import React, { useState, useEffect } from "react";
 import { getSpecificGroup } from "../../services/apiCRUD/groupCRUD";
 import { useGlobalState } from "../../config/store";
 import GroupGames from "./GroupGames";
+import GroupMembers from "./GroupMembers";
 
 function GroupOverview() {
   const { store } = useGlobalState();
   const [groupData, setGroupData] = useState([]);
   
+  console.log(store)
+  // console.log(groupData.data.members)
+  console.log(groupData)
+    
+    
   let groupName = null
+  let groupMembersArray = []
 
   if(groupData.data) {
     groupName = groupData.data.groupName
-  } 
-
+    groupMembersArray = groupData.data.members
+    console.log(groupData.data.members)
+  }
 
   let groupId = useParams().id;
 
@@ -29,14 +37,19 @@ function GroupOverview() {
       <h1>{groupName}</h1>
 
       <h3>Members</h3>
-
       <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
-        <ListGroup.Item>[player name]</ListGroup.Item>
-        <ListGroup.Item>[player name]</ListGroup.Item>
-        <ListGroup.Item>[player name]</ListGroup.Item>
-        <ListGroup.Item>[player name]</ListGroup.Item>
-        <ListGroup.Item>[player name]</ListGroup.Item>
+        <GroupMembers members={groupMembersArray} />
       </ListGroup>
+
+      <h3>Pending Members</h3>
+
+<ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
+  <ListGroup.Item>[player name]</ListGroup.Item>
+  <ListGroup.Item>[player name]</ListGroup.Item>
+  <ListGroup.Item>[player name]</ListGroup.Item>
+  <ListGroup.Item>[player name]</ListGroup.Item>
+  <ListGroup.Item>[player name]</ListGroup.Item>
+</ListGroup>
 
       <h3>Games Played</h3>
       <GroupGames />
