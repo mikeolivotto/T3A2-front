@@ -18,8 +18,7 @@ function JoinGroup() {
       if (res.data.message) {
         alert(res.data.message)
       } else {
-        // navigate(`/group/${res.data._id}`)
-        console.log("no error message")
+        navigate(`/group/${res.data.groupId}`)
       }
 
     }).catch(err => {console.log(err)});
