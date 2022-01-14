@@ -39,12 +39,12 @@ function Welcome() {
               <label htmlFor="password">Password</label>
               <input type="password" name="password" id="password" />
             </Stack>
-            <Stack direction="horizontal" gap={3} className="pt-4">
-              <Button className="button-login px-3" type="submit">
+            <Stack direction="horizontal" gap={3} className="flex-wrap pt-4">
+              <Button className="button-main px-4" type="submit">
                 Log in
               </Button>
-              <Button variant="light" className="button-signup px-3">
-                <Link to="/sign-up" className="signup-link">
+              <Button variant="light" className="button-second px-4">
+                <Link to="/sign-up" className="main-link">
                   Sign up
                 </Link>
               </Button>
@@ -52,7 +52,6 @@ function Welcome() {
           </form>
         </div>
       </div>
-      <div className="container"></div>
     </>
   );
 }
