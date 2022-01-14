@@ -23,6 +23,12 @@ export const stateReducer = (state, action) => {
         groupData: action.data,
       };
 
+    case "setGame":
+      return {
+        ...state,
+        gameInPlay: action.data,
+      };
+
     default:
       return state;
   }
