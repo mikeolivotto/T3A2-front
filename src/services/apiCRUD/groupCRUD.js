@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export const createNewGroup = async (groupDetails, idToken) => {
-    let { groupName, adminId, joinCode } = groupDetails;
+    let { groupName, adminId, joinCode, members } = groupDetails;
     let groupInfo = await axios.post(
         process.env.REACT_APP_API + "/group",
         {
             groupName: groupName,
             adminId: adminId,
             joinCode: joinCode,
-            members: []
+            members: members
         },
         {
             headers: {
