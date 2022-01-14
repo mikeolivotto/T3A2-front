@@ -1,0 +1,14 @@
+:root {
+  --main-color: #e1671c;
+}
+
+h1 {
+  color: var(--main-color);
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.main-text {
+  color: var(--main-color);
+  font-size: 2vw;
+}

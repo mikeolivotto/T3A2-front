@@ -6,63 +6,90 @@ import { useGlobalState } from "../../config/store";
 import { getSpecificProfile } from "../../services/apiCRUD/profileCRUD";
 import UserGroups from "./UserGroups";
 import UserGames from "./UserGames";
+import "../../styles/profile.css";
+import Container from "react-bootstrap/Container";
 
 function UserProfile() {
   const { store, dispatch } = useGlobalState();
 
-  console.log(store.profileData)
+  console.log(store.profileData);
 
   // useEffect warnings disabled, may hide problems.
   useEffect(() => {
-    const profileId = store.profileData[0]._id
-    getSpecificProfile(profileId, store.idToken).then((res) => dispatch({type:"setProfile",data:res.data}))
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    const profileId = store.profileData[0]._id;
+    getSpecificProfile(profileId, store.idToken).then((res) =>
+      dispatch({ type: "setProfile", data: res.data })
+    );
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // const [profile,games,groups,adminOf] = store.profileData
 
-  let gamesPlayed = store.profileData[1] ? store.profileData[1].gamesPlayed.length : 0
-  let gamesWon = store.profileData[1] ? store.profileData[1].gamesWon.length : 0
-  let gamesWonPC = gamesWon === 0 ? 0 : (gamesWon/gamesPlayed)*100
-  let gamesLost = gamesPlayed - gamesWon
-  let gamesLostPC = gamesLost === 0 ? 0 : (gamesLost/gamesPlayed)*100
+  let gamesPlayed = store.profileData[1]
+    ? store.profileData[1].gamesPlayed.length
+    : 0;
+  let gamesWon = store.profileData[1]
+    ? store.profileData[1].gamesWon.length
+    : 0;
+  let gamesWonPC = gamesWon === 0 ? 0 : (gamesWon / gamesPlayed) * 100;
+  let gamesLost = gamesPlayed - gamesWon;
+  let gamesLostPC = gamesLost === 0 ? 0 : (gamesLost / gamesPlayed) * 100;
 
   return (
     <>
-      <img src="./img/avatar.png" alt="user avatar"></img>
+      <Container className="col-10 col-md-6 mb-5">
+        <div className="d-flex justify-content-center">
+          <img
+            src="./img/profile-photo.png"
+            alt="user avatar"
+            className="profile-img img-fluid mb-3"
+          ></img>
+        </div>
+        <h1>{store.profileData[0].username.toUpperCase()}</h1>
+        <p className="profile-name mb-2">
+          {store.profileData[0].firstName + " " + store.profileData[0].lastName}
+        </p>
 
-      <h2>{(store.profileData[0].username).toUpperCase()}</h2>
-      <p>{store.profileData[0].firstName + " " + store.profileData[0].lastName}</p>
+        <Stack
+          direction="horizontal"
+          gap={3}
+          className="d-flex justify-content-between my-3"
+        >
+          <div className="bg-light border">Games played: {gamesPlayed}</div>
+          <div className="bg-light border">
+            Games won: {gamesWon} / {gamesWonPC}%
+          </div>
+          <div className="bg-light border">
+            Games lost: {gamesLost} / {gamesLostPC}%
+          </div>
+        </Stack>
 
-      <h3>Groups you belong to:</h3>
-      {store.profileData[2] && <UserGroups/>}
+        <h4 className="main-text">Groups you belong to:</h4>
+        {store.profileData[2] && <UserGroups />}
 
+        <h4 className="main-text">Pending Group Invites:</h4>
+        <p>**-- where is this data coming from? --**</p>
+        <h4 className="main-text">Games played:</h4>
+        {store.profileData[1] && <UserGames />}
 
-      <h3>Pending Group Invites:</h3>
-      <p>**-- where is this data coming from? --**</p>
+        <h4 className="main-text">
+          {store.profileData[0].firstName[0].toUpperCase() +
+            store.profileData[0].firstName.slice(1)}
+          's scoreboard
+        </h4>
 
-      <h3>Games played:</h3>
-      {store.profileData[1] && <UserGames />}
-
-      <h3>{store.profileData[0].username}'s scoreboard</h3>
-      <p>Games played: { gamesPlayed }</p>
-      <p>Games won: { gamesWon } / { gamesWonPC }%</p>
-      <p>Games lost: { gamesLost } / { gamesLostPC }%</p>
-
-  
-
-      <Stack gap={2} className="col-8 col-md-5 col-lg-3 mx-auto">
-          <Button>
-            <Link to="/create-group" style={{ color: "white", textDecoration: "none" }}>
+        <Stack gap={2} direction="horizontal" className="flex-wrap pt-4">
+          <Button className="button-main px-4">
+            <Link to="/create-group" className="second-link">
               Create a Group
             </Link>
           </Button>
-
-          <Button>
-            <Link to="/join-group" style={{ color: "white", textDecoration: "none" }}>
+          <Button variant="light" className="button-second px-4">
+            <Link to="/join-group" className="main-link">
               Join a Group
             </Link>
           </Button>
         </Stack>
+      </Container>
     </>
   );
 }

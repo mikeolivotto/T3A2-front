@@ -1,35 +1,29 @@
 import { useGlobalState } from "../../config/store";
 import { Link } from "react-router-dom";
-import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroup from "react-bootstrap/ListGroup";
 
 function UserGroups() {
+  const { store } = useGlobalState();
 
-  const { store } = useGlobalState()
-
-   const groupArray = store.profileData[2].concat(store.profileData[3])
-
+  const groupArray = store.profileData[2].concat(store.profileData[3]);
 
   const groupsList = groupArray.map((group) => {
-    return <ListGroup.Item key={ group._id }>
-      <Link to={`/group/${group._id}`}>{ group.groupName }</Link>
+    return (
+      <ListGroup.Item key={group._id}>
+        <Link to={`/group/${group._id}`}>{group.groupName}</Link>
       </ListGroup.Item>
-  })
-
+    );
+  });
 
   const groups = () => {
-    if(groupArray.length >= 1) {
-      return <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">{ groupsList }</ListGroup>
+    if (groupArray.length >= 1) {
+      return <ListGroup>{groupsList}</ListGroup>;
     } else {
-      return <p>You have not joined any groups, amigo</p>
+      return <p>You have not joined any groups, amigo</p>;
     }
-  }
+  };
 
-    return (
-      <div style={{maxHeight: "20vh", overflowY: "auto"}}>
-      { groups() }
-      </div>
-    );
-  }
-  
-  export default UserGroups;
-  
+  return <div>{groups()}</div>;
+}
+
+export default UserGroups;
