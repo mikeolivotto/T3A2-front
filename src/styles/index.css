@@ -1,4 +1,4 @@
-/* body {
+body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -10,7 +10,12 @@
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-} */
+}
+
+:root {
+  --main-color: #e1671c;
+  /* --pane-padding: 5px 42px; */
+}
 
 .container {
   /* max-width: px; */
@@ -19,14 +24,14 @@ code {
 }
 
 button.button-login {
-  background-color: #e1671c;
-  border-color: #e1671c;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
 }
 
 button.button-login:hover {
   background-color: #ffff;
-  border-color: #e1671c;
-  color: #e1671c;
+  border-color: var(--main-color);
+  color: var(--main-color);
 }
 
 button.button-signup {
@@ -40,7 +45,7 @@ button.button-signup {
 
 .signup-link:hover {
   text-decoration: none;
-  color: #e1671c;
+  color: var(--main-color);
 }
 
 button.button-signup:hover {
