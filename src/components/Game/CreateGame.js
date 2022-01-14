@@ -26,10 +26,17 @@ function CreateGame() {
   const [warning, setWarning] = useState(false)
 
   let handleChange = async (event) => {
-    if (event.target.id === "gameName" && (event.target.value).length >= 1) {
-      setWarning(false)
-      setGameName(event.target.value);
-    } else if ((event.target.value > 0) && (event.target.value <= 10)) {
+
+    if (event.target.id === "gameName") {
+
+      if ((event.target.value).length >= 1) {
+        setWarning(false)
+        setGameName(event.target.value);
+      } else {
+        setWarning(true)
+        setGameName(null);
+      }
+    } else if (event.target.type === "checkbox") {
       setWarning(false)
       setIncrements({
         ...increments,
@@ -62,8 +69,8 @@ function CreateGame() {
           }
         }
       })
+      navigate("/game")
     }
-    navigate("/game")
   };
 
   const pointsList = Object.keys(increments).map((increment) => {
