@@ -27,5 +27,11 @@ export const getSpecificProfile = async (profileId, idToken) => {
             authorization: idToken 
         }
     })
+
+    return response
+}
+
+export const getAllUsernames = async () => {
+    let response = await axios.get(process.env.REACT_APP_API + "/profiles/")
     return response
 }
