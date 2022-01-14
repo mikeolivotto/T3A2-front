@@ -1,10 +1,9 @@
 import { useGlobalState } from "../../config/store";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
-import { Link } from "react-router-dom";
 
 function GameInPlay() {
-  const { store, dispatch } = useGlobalState();
+  const { store } = useGlobalState();
 
   console.log(store.gameInPlay.gameName);
   console.log(store.gameInPlay.groupId);
@@ -17,16 +16,9 @@ function GameInPlay() {
     return <Button key={point}>{point}</Button>;
   });
 
-
-  const handleChange = async (event) => {
-
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
-  }
+  };
 
   return (
     <>
@@ -34,7 +26,7 @@ function GameInPlay() {
 
       <form onSubmit={handleSubmit}>
         <p>Select player:</p>
-        { pointButtons }
+        {pointButtons}
 
         <Stack gap={1} className="col-8 col-md-5 col-lg-3 mx-auto">
           <Button type="submit">End game</Button>
@@ -43,9 +35,8 @@ function GameInPlay() {
               Cancel
             </Link>
           </Button> */}
-        </Stack>      
-        
-        </form>
+        </Stack>
+      </form>
     </>
   );
 }
