@@ -3,30 +3,65 @@ import Stack from "react-bootstrap/Stack";
 import { Link, useNavigate } from "react-router-dom";
 import { createNewGroup } from "../../services/apiCRUD/groupCRUD";
 import { useGlobalState } from "../../config/store";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ListGroup from 'react-bootstrap/ListGroup';
+import { getAllUsernames } from "../../services/apiCRUD/profileCRUD";
 
 function CreateGroup() {
   const { store, dispatch } = useGlobalState();
-  const [members, setMembers] = useState(["bill", "jean"])
-  const navigate = useNavigate()
-  console.log("profile data:", store.profileData);
+  const [members, setMembers] = useState(["bill", "jean"]);
+  const [profileList, setProfileList] = useState([])
 
-  console.log(`admin username = ${store.profileData[0].username}`)
-  // console.log(store)
+  const [filter, setFilter] = useState("");
+  const navigate = useNavigate()
+
+  // console.log("profile data:", store.profileData);
+  // console.log(`admin username = ${store.profileData[0].username}`)
+
+  useEffect(() => {
+    const getData =  async () => {
+      let usernames = await getAllUsernames().then(res => {
+        let filteredArray = res.data.usernames.filter(x => x !== store.profileData[0].username)
+        setProfileList(filteredArray);
+      })
+      return usernames
+    }
+    getData()
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const removeOnClick = (event) => {
     const tempMembersArray = [...members]
     const indexOfMember = tempMembersArray.indexOf(event.target.value)
-    tempMembersArray.splice(indexOfMember,1)
+    tempMembersArray.splice(indexOfMember, 1)
     setMembers(tempMembersArray)
+  }
+  // PLACEHOLDER: list of all usernames of registered users.
+  // const profileList = ["bill", "jean", "sarah", "sandra", "saramiah"]
+
+  // updates members state with the added username, checks if already present
+  const addOnClick = (event) => {
+    let tempMembersArray = [...members]
+    if (!tempMembersArray.includes(event.target.value)) {
+      tempMembersArray.push(event.target.value)
+      setMembers(tempMembersArray);
+    }
   }
 
   const memberList = members.map((member) => {
     return (
-      <ListGroup.Item key={member}>{ member } <Button variant="link" value={member} onClick={removeOnClick}>Remove</Button></ListGroup.Item>
+      <ListGroup.Item key={member}>{member} <Button variant="link" value={member} onClick={removeOnClick}>Remove</Button></ListGroup.Item>
     )
   })
+
+  // updates filter state with the current value of the search for players field. 
+  const handleChange = (event) => {
+    event.preventDefault()
+    // the "^" means the regex checks from the start of the word, the "i" means case insensitive
+    setFilter(new RegExp(`^${event.target.value}`, "i"))
+    let copy = [...profileList]
+    setProfileList([]);
+    setProfileList(copy)
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,6 +71,7 @@ function CreateGroup() {
       groupName: event.target.groupName.value,
       adminId: store.profileData[0]._id,
       joinCode: event.target.joinCode.value,
+      members: members
     };
 
     console.log("group details name:", groupDetails.groupName);
@@ -66,15 +102,40 @@ function CreateGroup() {
         <Stack gap={1} className="col-8 col-md-5 col-lg-3 mx-auto">
           <label htmlFor="groupName">Group name</label>
           <input type="text" name="groupName" id="groupName" />
+          <label htmlFor="joinCode">Join Code</label>
+          <input type="text" name="joinCode" id="joinCode" />
 
-        <p>Group members</p>
-        <ListGroup>
-          <ListGroup.Item>You - {store.profileData[0].username} (Group admin) </ListGroup.Item>
-          { memberList }
-        </ListGroup>
 
+
+          <p>Group members</p>
+          <ListGroup>
+            <ListGroup.Item>You - {store.profileData[0].username} (Group admin) </ListGroup.Item>
+            {memberList}
+          </ListGroup>
+
+          <label htmlFor="searchForPlayers">Search for players</label>
+          <input type="text" name="searchForPlayers" id="searchForPlayers" onChange={handleChange} />
 
           <p>Invite members</p>
+          
+          {
+          (profileList.length === 0) ? 
+          null 
+          :
+          <div style={{maxHeight: "40vh", overflowY: "auto"}}>
+          <ListGroup>
+            {profileList.map((profile, index) => {
+              return filter ? 
+                filter.test(profile) ? 
+                  <ListGroup.Item key={index}>{profile} <Button key={index} variant="link" value={profile} onClick={addOnClick}>Add to group</Button></ListGroup.Item>
+                  :
+                  null
+              : <ListGroup.Item key={index}>{profile} <Button key={index} variant="link" value={profile} onClick={addOnClick}>Add to group</Button></ListGroup.Item>
+
+            })}
+          </ListGroup>  
+          </div>
+          }
 
 
           <p>Suggested functionality for MVP (by Mike) :</p>
