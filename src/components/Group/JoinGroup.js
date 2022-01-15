@@ -14,7 +14,7 @@ function JoinGroup() {
   const handleSubmit = (event) => {
     event.preventDefault()
     let joinCode = event.target.joinCode.value;
-    joinGroup(joinCode,store.idToken).then((res) => {
+    joinGroup(joinCode, store.idToken).then((res) => {
       if (res.data.message) {
         alert(res.data.message)
       } else {
