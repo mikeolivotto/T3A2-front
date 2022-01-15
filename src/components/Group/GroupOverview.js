@@ -8,9 +8,10 @@ import { useGlobalState } from "../../config/store";
 import GroupGames from "./GroupGames";
 import GroupMembers from "./GroupMembers";
 import { capitalise } from "../../utils/helperFunctions";
+import GroupPendingMembers from "./GroupPendingMembers";
 
 function GroupOverview() {
-  const { store } = useGlobalState();
+  const { store, dispatch } = useGlobalState();
   const [groupData, setGroupData] = useState([]);
   
   console.log(store)
@@ -34,7 +35,10 @@ function GroupOverview() {
   let groupId = useParams().id;
 
   useEffect(() => {
-    getSpecificGroup(groupId, store.idToken).then((res) => setGroupData(res));
+    getSpecificGroup(groupId, store.idToken).then((res) => {
+      setGroupData(res);
+      dispatch({type: "setGroup", data: res.data})
+    })  
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -50,7 +54,7 @@ function GroupOverview() {
       <h3>Pending Members</h3>
 
       <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
-        <GroupMembers members={groupPendingMembersArray} />
+        <GroupPendingMembers members={groupPendingMembersArray} />
       </ListGroup>
 
       <h3>Games Played</h3>
