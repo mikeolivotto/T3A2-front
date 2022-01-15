@@ -9,7 +9,7 @@ function GameInPlay() {
   const { store } = useGlobalState();
 
   const [currentPlayer, setCurrentPlayer] = useState(null)
-  const [addOrRemove, setAddOrRemove] = useState(null)
+  const [addOrRemove, setAddOrRemove] = useState("add")
   const [scores, setScores] = useState({})
 
   console.log(scores)
@@ -29,7 +29,8 @@ function GameInPlay() {
   const adjustScore = (event) => {
     let playerScore = scores[currentPlayer]
     let operation = addOrRemove
-    let amount = event.target.value
+    let amount = parseInt(event.target.value)
+    console.log(`Type of 'amount' = ${typeof(amount)}`)
 
     let newScore
     if (operation === "add") {
@@ -56,7 +57,7 @@ function GameInPlay() {
 
   const membersList = membersArray.map((member, index) => {
     return <ListGroup.Item key={ index }>
-         <label><input type="radio" value={member} name={member} onClick={selectPlayer} /> { capitalise(member) }</label>
+         <label><input type="radio" value={member} name={member} onClick={selectPlayer} /> { capitalise(member) } [x] points</label>
       </ListGroup.Item>
   })
 
