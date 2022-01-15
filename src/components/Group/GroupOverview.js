@@ -7,6 +7,7 @@ import { getSpecificGroup } from "../../services/apiCRUD/groupCRUD";
 import { useGlobalState } from "../../config/store";
 import GroupGames from "./GroupGames";
 import GroupMembers from "./GroupMembers";
+import { capitalise } from "../../utils/helperFunctions";
 
 function GroupOverview() {
   const { store } = useGlobalState();
@@ -20,11 +21,13 @@ function GroupOverview() {
   let groupName = null
   let groupMembersArray = []
   let groupPendingMembersArray = []
+  let joinCode = null
 
   if(groupData.data) {
     groupName = groupData.data.groupName
     groupMembersArray = groupData.data.members
     groupPendingMembersArray = groupData.data.pendingMembers
+    joinCode = groupData.data.joinCode
     console.log(groupData.data.members)
   }
 
@@ -36,7 +39,8 @@ function GroupOverview() {
 
   return (
     <>
-      <h1>{groupName}</h1>
+      <h1>{groupData.data && capitalise(groupName)}</h1>
+      <p>Join code: {groupData.data && joinCode} </p>
 
       <h3>Members</h3>
       <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">

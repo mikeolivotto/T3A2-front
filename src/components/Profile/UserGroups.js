@@ -1,6 +1,7 @@
 import { useGlobalState } from "../../config/store";
 import { Link } from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
+import { capitalise } from "../../utils/helperFunctions";
 
 function UserGroups() {
   const { store } = useGlobalState();
@@ -10,7 +11,7 @@ function UserGroups() {
   const groupsList = groupArray.map((group) => {
     return (
       <ListGroup.Item key={group._id}>
-        <Link to={`/group/${group._id}`}>{group.groupName}</Link>
+        <Link to={`/group/${group._id}`}>{capitalise(group.groupName)}</Link>
       </ListGroup.Item>
     );
   });

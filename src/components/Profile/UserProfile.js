@@ -8,6 +8,7 @@ import UserGroups from "./UserGroups";
 import UserGames from "./UserGames";
 import "../../styles/profile.css";
 import Container from "react-bootstrap/Container";
+import { capitalise } from "../../utils/helperFunctions";
 
 function UserProfile() {
   const { store, dispatch } = useGlobalState();
@@ -46,7 +47,7 @@ function UserProfile() {
         </div>
         <h1>{store.profileData[0].username.toUpperCase()}</h1>
         <p className="profile-name mb-2">
-          {store.profileData[0].firstName + " " + store.profileData[0].lastName}
+          { capitalise(store.profileData[0].firstName) + " " +  capitalise(store.profileData[0].lastName)}
         </p>
 
         <Stack
@@ -70,12 +71,6 @@ function UserProfile() {
         <p>**-- where is this data coming from? --**</p>
         <h4 className="main-text">Games played:</h4>
         {store.profileData[1] && <UserGames />}
-
-        <h4 className="main-text">
-          {store.profileData[0].firstName[0].toUpperCase() +
-            store.profileData[0].firstName.slice(1)}
-          's scoreboard
-        </h4>
 
         <Stack gap={2} direction="horizontal" className="flex-wrap pt-4">
           <Button className="button-main px-4">
