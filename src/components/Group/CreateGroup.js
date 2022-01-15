@@ -16,7 +16,7 @@ function CreateGroup() {
   const navigate = useNavigate()
 
   // console.log("profile data:", store.profileData);
-  // console.log(`admin username = ${store.profileData[0].username}`)
+  console.log(`admin username = ${store.profileData[0].username}`)
 
   useEffect(() => {
     const getData =  async () => {
@@ -71,15 +71,12 @@ function CreateGroup() {
       groupName: event.target.groupName.value,
       adminId: store.profileData[0]._id,
       joinCode: event.target.joinCode.value,
-      members: members
-
-      // suggest we set 'members' to an empty array, and add a 'pendingMembers' key (see below) - Mike
-      // members: []
-      // pendingMembers: members
+      members: [store.profileData[0].username],
+      pendingMembers: members
     };
 
     console.log("group details name:", groupDetails.groupName);
-    console.log("group join code:", groupDetails.joinCode);
+    console.log("pending Members:", groupDetails.pendingMembers);
 
     let createdGroup = createNewGroup(groupDetails, store.idToken).then(
       (res) => {

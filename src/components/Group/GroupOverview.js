@@ -19,10 +19,12 @@ function GroupOverview() {
     
   let groupName = null
   let groupMembersArray = []
+  let groupPendingMembersArray = []
 
   if(groupData.data) {
     groupName = groupData.data.groupName
     groupMembersArray = groupData.data.members
+    groupPendingMembersArray = groupData.data.pendingMembers
     console.log(groupData.data.members)
   }
 
@@ -43,13 +45,9 @@ function GroupOverview() {
 
       <h3>Pending Members</h3>
 
-<ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
-  <ListGroup.Item>[player name]</ListGroup.Item>
-  <ListGroup.Item>[player name]</ListGroup.Item>
-  <ListGroup.Item>[player name]</ListGroup.Item>
-  <ListGroup.Item>[player name]</ListGroup.Item>
-  <ListGroup.Item>[player name]</ListGroup.Item>
-</ListGroup>
+      <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
+        <GroupMembers members={groupPendingMembersArray} />
+      </ListGroup>
 
       <h3>Games Played</h3>
       <GroupGames />
