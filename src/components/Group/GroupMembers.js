@@ -1,4 +1,5 @@
 import ListGroup from "react-bootstrap/ListGroup";
+import { capitalise } from "../../utils/helperFunctions";
 
 function GroupMembers(props) {
 
@@ -8,7 +9,7 @@ function GroupMembers(props) {
 
   const membersList = membersArray.map((member) => {
     return (
-      <ListGroup.Item key={member._id}>{member}
+      <ListGroup.Item key={member._id}>{capitalise(member)}
       </ListGroup.Item>
     );
   });
