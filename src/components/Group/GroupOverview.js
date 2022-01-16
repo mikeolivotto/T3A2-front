@@ -28,7 +28,6 @@ function GroupOverview() {
     groupMembersArray = groupData.data.members;
     groupPendingMembersArray = groupData.data.pendingMembers;
     joinCode = groupData.data.joinCode;
-    console.log(groupData.data.members);
   }
 
   let groupId = useParams().id;
