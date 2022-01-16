@@ -1,21 +1,29 @@
 import { useGlobalState } from "../../config/store";
 import ListGroup from 'react-bootstrap/ListGroup';
+// import { Link } from "react-router-dom";
+import { capitalise } from "../../utils/helperFunctions";
+import Button from "react-bootstrap/Button";
+
 
 function UserInvites() {
 
   const { store } = useGlobalState()
 
-  const groupArray = store.profileData[1]
+  const groupArray = store.profileData[4]
 
 
   const groupsList = groupArray.map((group) => {
-    return <ListGroup.Item key={group.id}>{ group }</ListGroup.Item>
+    return <ListGroup.Item key={group._id}>
+               {capitalise(group.groupName)} <Button size="sm">Accept</Button> <Button variant="secondary" size="sm">
+      Reject
+    </Button>
+      </ListGroup.Item>
   })
 
 
   const groups = () => {
     if(groupArray.length >= 1) {
-      return <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">{groupsList}</ListGroup>
+      return <ListGroup>{groupsList}</ListGroup>
     } else {
       return <p>You have not joined any groups, amigo</p>
     }

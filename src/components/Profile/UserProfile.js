@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import { useGlobalState } from "../../config/store";
 import { getSpecificProfile } from "../../services/apiCRUD/profileCRUD";
 import UserGroups from "./UserGroups";
+import UserInvites from "./UserInvites";
 import UserGames from "./UserGames";
 import "../../styles/profile.css";
 import Container from "react-bootstrap/Container";
@@ -65,10 +66,12 @@ function UserProfile() {
         </Stack>
 
         <h4 className="main-text">Groups you belong to:</h4>
-        {store.profileData[2] && <UserGroups />}
+        {store.profileData[2] ? <UserGroups /> : "loading..."}
 
         <h4 className="main-text">Pending Group Invites:</h4>
-        <p>**-- where is this data coming from? --**</p>
+        {store.profileData[4] ? <UserInvites /> : "loading..."}
+       
+       
         <h4 className="main-text">Games played:</h4>
         {store.profileData[1] && <UserGames />}
 
