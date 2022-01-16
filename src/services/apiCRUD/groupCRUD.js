@@ -36,7 +36,6 @@ export const getSpecificGroup = async (groupId, idToken) => {
 export const updateSpecificGroup = async(groupId, idToken, username, acceptance) => {    
     let group = await getSpecificGroup(groupId, idToken)
 
-
     let groupDetails = group.data
     const members = groupDetails.members
     const pending = groupDetails.pendingMembers
@@ -45,35 +44,33 @@ export const updateSpecificGroup = async(groupId, idToken, username, acceptance)
 
     // whether player accepts or rejects, they should be removed from pending
     pending.splice(indexInPending, 1)
-    console.log(pending) 
-
 
     if (acceptance === "accept") {
         // add to members, remove from pending
         members.push(username)
-        groupDetails = {
-            ...groupDetails,
-            members: members,
-            pendingMembers: pending
-        }
-    } else {
-        groupDetails = {
-            ...groupDetails,
-            members: members,
-            pendingMembers: pending
-        }
     }
-
+    
+    // update groupDetails object, in preparation to update group in db
+    groupDetails = {
+        ...groupDetails,
+        members: members,
+        pendingMembers: pending
+    }
+    
     console.log(groupDetails)
 
-    // let response = await axios.put(
-    //     process.env.REACT_APP_API + `/group/${groupId}`,
-    //     {
-    //         username: username,
-    //         acceptance: acceptance
-    //     }
-    // );
-    // return response;
+    // send off to the db to update the specific group
+    let response = await axios.put(
+        process.env.REACT_APP_API + `/group/${groupId}`,
+        {
+            headers: {
+                authorization: idToken,
+            },
+            groupDetails
+        }
+        
+    );
+    return response;
 }
 
 export const getGroupGames = async (groupId, username) => {
