@@ -4,9 +4,12 @@ import Stack from "react-bootstrap/Stack";
 import ListGroup from "react-bootstrap/ListGroup";
 import { capitalise } from "../../utils/helperFunctions";
 import React, { useState, useEffect } from "react";
+import { createGame } from "../../services/apiCRUD/gameCRUD";
+import { useNavigate } from "react-router-dom";
 
 function GameInPlay() {
   const { store } = useGlobalState();
+  const navigate = useNavigate();
 
   const [currentPlayer, setCurrentPlayer] = useState(null)
   const [scores, setScores] = useState({})
@@ -45,6 +48,30 @@ function GameInPlay() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    let highScore = 0;
+    let winner;
+    for (let player in scores) {
+      if (scores[player] > highScore) {
+        highScore = scores[player];
+        winner = player;
+      }
+    }
+    let updatedGameData = {
+      ...store.gameInPlay,
+      players: membersArray,
+      winner: winner,
+      scoreboard: scores,
+      datePlayed: new Date()
+    }
+    console.log(updatedGameData)
+    createGame(updatedGameData, store.idToken).then(res => {
+      if (res.data.message) {
+        alert(res.data.message);
+      } else {
+        navigate(`/game/${res.data._id}`)
+      }
+    }).catch(error => console.log(error))
+    console.log(updatedGameData)
   };
   
   const pointButtons = pointIncrements.map((point) => {
