@@ -13,23 +13,22 @@ import GroupPendingMembers from "./GroupPendingMembers";
 function GroupOverview() {
   const { store, dispatch } = useGlobalState();
   const [groupData, setGroupData] = useState([]);
-  
-  console.log(store)
-  // console.log(groupData.data.members)
-  console.log(groupData)
-    
-    
-  let groupName = null
-  let groupMembersArray = []
-  let groupPendingMembersArray = []
-  let joinCode = null
 
-  if(groupData.data) {
-    groupName = groupData.data.groupName
-    groupMembersArray = groupData.data.members
-    groupPendingMembersArray = groupData.data.pendingMembers
-    joinCode = groupData.data.joinCode
-    console.log(groupData.data.members)
+  console.log(store);
+  // console.log(groupData.data.members)
+  console.log(groupData);
+
+  let groupName = null;
+  let groupMembersArray = [];
+  let groupPendingMembersArray = [];
+  let joinCode = null;
+
+  if (groupData.data) {
+    groupName = groupData.data.groupName;
+    groupMembersArray = groupData.data.members;
+    groupPendingMembersArray = groupData.data.pendingMembers;
+    joinCode = groupData.data.joinCode;
+    console.log(groupData.data.members);
   }
 
   let groupId = useParams().id;
@@ -37,28 +36,33 @@ function GroupOverview() {
   useEffect(() => {
     getSpecificGroup(groupId, store.idToken).then((res) => {
       setGroupData(res);
-      dispatch({type: "setGroup", data: res.data})
-    })  
+      dispatch({ type: "setGroup", data: res.data });
+    });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      <h1>{groupData.data && capitalise(groupName)}</h1>
-      <p>Join code: {groupData.data && joinCode} </p>
+      {groupData.data ? <h1>{capitalise(groupName)}</h1> : <h1>Loading...</h1>}
+      <p>Join code: {groupData.data ? joinCode : "loading..."} </p>
 
       <h3>Members</h3>
-      <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
+
+      {groupData.data ? (
         <GroupMembers members={groupMembersArray} />
-      </ListGroup>
+      ) : (
+        "Loading..."
+      )}
 
       <h3>Pending Members</h3>
 
-      <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">
+      {groupData.data ? (
         <GroupPendingMembers members={groupPendingMembersArray} />
-      </ListGroup>
+      ) : (
+        "Loading..."
+      )}
 
       <h3>Games Played</h3>
-      <GroupGames />
+      {groupData.data ? <GroupGames /> : "Loading..."}
 
       <Stack gap={2} className="col-8 col-md-5 col-lg-3 mx-auto">
         <Button>

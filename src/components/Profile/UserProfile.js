@@ -65,7 +65,7 @@ function UserProfile() {
         </Stack>
 
         <h4 className="main-text">Groups you belong to:</h4>
-        {store.profileData[2] && <UserGroups />}
+        {store.profileData[2] ? <UserGroups /> : "loading..."}
 
         <h4 className="main-text">Pending Group Invites:</h4>
         <p>**-- where is this data coming from? --**</p>

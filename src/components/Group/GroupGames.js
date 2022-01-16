@@ -19,9 +19,6 @@ function GroupGames() {
     gameArray = groupGames.data
   }
 
-
-
-
   const gamesList = gameArray.map((game) => {
     return <ListGroup.Item key={ game._id }>
         { game.gameName }
