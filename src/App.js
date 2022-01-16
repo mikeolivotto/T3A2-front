@@ -8,6 +8,7 @@ import GroupOverview from "./components/Group/GroupOverview";
 import CreateGroup from "./components/Group/CreateGroup";
 import CreateGame from "./components/Game/CreateGame";
 import GameInPlay from "./components/Game/GameInPlay";
+import GameResult from "./components/Game/GameResult.js";
 import "./styles/App.css";
 import "./styles/globalStyles.css";
 import { initialState } from "./config/initialState.js";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/join-group" element={<JoinGroup />} />
           <Route path="/group/:id/new-game" element={<CreateGame />} />
           <Route path="/game/" element={<GameInPlay />} />
+          <Route path="/game/:id" element={<GameResult />} />
         </Routes>
       </div>
     </StateContext.Provider>
