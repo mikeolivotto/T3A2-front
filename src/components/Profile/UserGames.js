@@ -19,7 +19,7 @@ function UserGames() {
 
   const games = () => {
     if (gamesArray.length >= 1) {
-      return <ListGroup className="col-8 col-md-5 col-lg-3 mx-auto">{gamesList}</ListGroup>
+      return <ListGroup>{gamesList}</ListGroup>
     } else {
       return <p>You have not played any games, amigo</p>
     }
