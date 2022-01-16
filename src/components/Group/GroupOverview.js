@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import { Link, useParams } from "react-router-dom";
-import ListGroup from "react-bootstrap/ListGroup";
+// import ListGroup from "react-bootstrap/ListGroup";
 import React, { useState, useEffect } from "react";
 import { getSpecificGroup } from "../../services/apiCRUD/groupCRUD";
 import { useGlobalState } from "../../config/store";

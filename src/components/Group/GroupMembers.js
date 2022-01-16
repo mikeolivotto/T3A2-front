@@ -7,9 +7,9 @@ function GroupMembers(props) {
   const membersArray = props.members
 
 
-  const membersList = membersArray.map((member) => {
+  const membersList = membersArray.map((member, index) => {
     return (
-      <ListGroup.Item key={member._id}>{capitalise(member)}
+      <ListGroup.Item key={index}>{capitalise(member)}
       </ListGroup.Item>
     );
   });
