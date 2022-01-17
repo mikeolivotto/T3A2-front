@@ -11,21 +11,27 @@ function GameInPlay() {
   const { store } = useGlobalState();
   const navigate = useNavigate();
 
-  const [currentPlayer, setCurrentPlayer] = useState(null)
+  const membersArray = store.groupData.members
+  const [currentPlayer, setCurrentPlayer] = useState(membersArray[0])
   const [scores, setScores] = useState({})
   // const [addOrRemove, setAddOrRemove] = useState("add")
   
   let pointIncrements = store.gameInPlay.gameRules.pointIncrements;
   const [increment, setIncrement] = useState(Number(pointIncrements[0]));
 
-  const membersArray = store.groupData.members
   let gameName = store.gameInPlay.gameName;
 
+  
   useEffect(() => {
-    membersArray.map((member) => {
-      return setScores({...scores, [member]: 0})
-    })
+    let scoreObject = scores
+    for (const member of membersArray) {
+      scoreObject[member] = 0
+    }
+    setScores(scoreObject)
+
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  console.log(scores)
 
   const selectPlayer = (event) => {
     setCurrentPlayer(event.target.name)
@@ -78,7 +84,7 @@ function GameInPlay() {
   
   const membersList = membersArray.map((member, index) => {
     return <ListGroup.Item key={ index }>
-         <label><input type="radio" value={member} name={member} onClick={selectPlayer} /> { capitalise(member) }: {scores[member]} points</label>
+         <label><input type="radio" value={member} name={member} checked={member === currentPlayer} onClick={selectPlayer}/> { capitalise(member) }: {scores[member]} points</label>
       </ListGroup.Item>
   })
   
@@ -123,18 +129,13 @@ function GameInPlay() {
 
         <div>
           <Button name="add" onClick={plusHandler}>+</Button>
-          <div>{scores[currentPlayer]}</div>
+          {/* <div>{scores[currentPlayer]}</div> */}
           <Button name="subtract" onClick={minusHandler}>-</Button>
         </div>
 
 
         <Stack gap={1} className="col-8 col-md-5 col-lg-3 mx-auto">
           <Button type="submit">End game</Button>
-          {/* <Button variant="light">
-            <Link to={`/group/${groupId}`} style={{ color: "black", textDecoration: "none" }}>
-              Cancel
-            </Link>
-          </Button> */}
         </Stack>
       </form>
     </>
