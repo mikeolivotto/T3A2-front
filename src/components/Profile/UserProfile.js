@@ -46,7 +46,9 @@ function UserProfile() {
         </div>
         <h1>{store.profileData[0].username.toUpperCase()}</h1>
         <p className="profile-name mb-2">
-          { capitalise(store.profileData[0].firstName) + " " +  capitalise(store.profileData[0].lastName)}
+          {capitalise(store.profileData[0].firstName) +
+            " " +
+            capitalise(store.profileData[0].lastName)}
         </p>
 
         <Stack
@@ -68,8 +70,7 @@ function UserProfile() {
 
         <h4 className="main-text">Pending Group Invites:</h4>
         {store.profileData[4] ? <UserInvites /> : "loading..."}
-       
-       
+
         <h4 className="main-text">Games played:</h4>
         {store.profileData[1] && <UserGames />}
 
