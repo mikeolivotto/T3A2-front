@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import { signIn } from "../services/apiCRUD/profileCRUD.js";
 import { useGlobalState } from "../config/store.js";
+import { Container } from "react-bootstrap";
 
 function Welcome() {
   const { dispatch } = useGlobalState();
@@ -27,7 +28,7 @@ function Welcome() {
 
   return (
     <>
-      <div className="container-box rounded col-8 col-md-5 col-lg-5 mx-auto p-4">
+      <Container className="col-8 col-md-5 col-lg-5 col-xl-4 mt-5">
         <div className="d-flex justify-content-center">
           <img src="./img/gmlogo2.png" alt="Game King" className="img-fluid" />
         </div>
@@ -35,23 +36,33 @@ function Welcome() {
           <form onSubmit={handleSubmit} className="py-4">
             <Stack gap={2}>
               <label htmlFor="email">Email</label>
-              <input type="text" name="email" id="email" />
+              <input
+                type="text"
+                name="email"
+                id="email"
+                className="bg-light border shade"
+              />
               <label htmlFor="password">Password</label>
-              <input type="password" name="password" id="password" />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="bg-light border shade"
+              />
             </Stack>
             <Stack direction="horizontal" gap={3} className="flex-wrap pt-4">
               <Button className="button-main px-4" type="submit">
                 Log in
               </Button>
-              <Button variant="light" className="button-second px-4">
-                <Link to="/sign-up" className="main-link">
-                  Sign up
-                </Link>
-              </Button>
+              <Link to="/sign-up">
+                <Button variant="light" className="button-second px-4">
+                  Sign up!
+                </Button>
+              </Link>
             </Stack>
           </form>
         </div>
-      </div>
+      </Container>
     </>
   );
 }
