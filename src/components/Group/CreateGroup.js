@@ -15,9 +15,6 @@ function CreateGroup() {
   const [filter, setFilter] = useState("");
   const navigate = useNavigate()
 
-  // console.log("profile data:", store.profileData);
-  console.log(`admin username = ${store.profileData[0].username}`)
-
   useEffect(() => {
     const getData =  async () => {
       let usernames = await getAllUsernames().then(res => {
@@ -74,9 +71,6 @@ function CreateGroup() {
       members: [store.profileData[0].username],
       pendingMembers: members
     };
-
-    console.log("group details name:", groupDetails.groupName);
-    console.log("pending Members:", groupDetails.pendingMembers);
 
     let createdGroup = createNewGroup(groupDetails, store.idToken).then(
       (res) => {
