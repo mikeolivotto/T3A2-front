@@ -1,3 +1,4 @@
+import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import { Link, useNavigate } from "react-router-dom";
@@ -47,53 +48,82 @@ function SignUp() {
   };
 
   return (
-    <div className="container rounded col-8 col-md-5 col-lg-5 mx-auto p-4">
-      <div className="d-flex justify-content-center">
-        <img src="./img/gmlogo2.png" alt="Game King" className="img-fluid" />
-      </div>
-      <div id="auth">
+    <>
+      <Container className="col-8 col-md-5 col-lg-5 col-xl-5 my-5">
         <div className="d-flex justify-content-center">
-          <h1 className="h3">Sign up</h1>
+          <img
+            src="./img/gmlogo1.png"
+            alt="Games Monarch"
+            className="img-fluid mb-3"
+          />
         </div>
+        <div id="auth">
+          <h4>Sign up</h4>
 
-        <form onSubmit={handleSubmit} className="py-4">
-          <Stack gap={2}>
-            <label htmlFor="email">Email</label>
-            <input type="text" name="email" id="email" />
+          <form onSubmit={handleSubmit}>
+            <Stack gap={2}>
+              <label htmlFor="email">Email</label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                className="bg-light border shade"
+              />
 
-            <label htmlFor="username">Username</label>
-            <input type="text" name="username" id="username" />
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                className="bg-light border shade"
+              />
 
-            <label htmlFor="firstName">First name</label>
-            <input type="text" name="firstName" id="firstName" />
+              <label htmlFor="firstName">First name</label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                className="bg-light border shade"
+              />
 
-            <label htmlFor="lastName">Last name</label>
-            <input type="text" name="lastName" id="lastName" />
+              <label htmlFor="lastName">Last name</label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                className="bg-light border shade"
+              />
 
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="bg-light border shade"
+              />
 
-            <label htmlFor="confirmPassword">Confirm password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-            />
-          </Stack>
-          <Stack direction="horizontal" gap={3} className="flex-wrap pt-4">
-            <Button className="button-main px-4" type="submit">
-              Submit
-            </Button>
-
-            <Button variant="light" className="button-second px-4">
-              <Link to="/" className="main-link">
-                Cancel
+              <label htmlFor="confirmPassword">Confirm password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                className="bg-light border shade"
+              />
+            </Stack>
+            <Stack direction="horizontal" gap={3} className="flex-wrap pt-4">
+              <Button className="button-main px-4" type="submit">
+                Submit
+              </Button>
+              <Link to="/">
+                <Button variant="light" className="button-second px-4">
+                  Cancel
+                </Button>
               </Link>
-            </Button>
-          </Stack>
-        </form>
-      </div>
-    </div>
+            </Stack>
+          </form>
+        </div>
+      </Container>
+    </>
   );
 }
 

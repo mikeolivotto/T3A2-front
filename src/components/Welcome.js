@@ -30,7 +30,11 @@ function Welcome() {
     <>
       <Container className="col-8 col-md-5 col-lg-5 col-xl-4 mt-5">
         <div className="d-flex justify-content-center">
-          <img src="./img/gmlogo2.png" alt="Game King" className="img-fluid" />
+          <img
+            src="./img/gmlogo2.png"
+            alt="Games Monarch"
+            className="img-fluid"
+          />
         </div>
         <div id="auth">
           <form onSubmit={handleSubmit} className="py-4">
