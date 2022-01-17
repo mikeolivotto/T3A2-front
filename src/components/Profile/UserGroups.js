@@ -6,7 +6,9 @@ import { capitalise } from "../../utils/helperFunctions";
 function UserGroups() {
   const { store } = useGlobalState();
 
-  const groupArray = store.profileData[2].concat(store.profileData[3]);
+  // const groupArray = store.profileData[2].concat(store.profileData[3]);
+  const groupArray = store.profileData[2]
+  console.log(groupArray)
 
   const groupsList = groupArray.map((group) => {
     return (
