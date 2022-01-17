@@ -26,7 +26,6 @@ function SignUp() {
     // checks username is unique and passoword is confirmed
     if (uniqueUsername && password.value === confirmPassword.value) {
       // send data off for processing with Firebase / creating user in the db
-      console.log("sign-up form has passed validation checks <----------");
       signUp(signUpDetails)
         .then((res) => {
           dispatch({

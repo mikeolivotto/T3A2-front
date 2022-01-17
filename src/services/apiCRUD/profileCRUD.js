@@ -24,7 +24,7 @@ export const signIn = async(signInDetails) => {
 export const getSpecificProfile = async (profileId, idToken) => {
     let response = await axios.get(process.env.REACT_APP_API+`/profiles/${profileId}`,{
         headers: {
-            authorization: idToken 
+            authorization: idToken
         }
     })
 

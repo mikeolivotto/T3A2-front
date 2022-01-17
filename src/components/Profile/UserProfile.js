@@ -16,8 +16,6 @@ import Col from "react-bootstrap/Col";
 function UserProfile() {
   const { store, dispatch } = useGlobalState();
 
-  console.log(store.profileData);
-
   // useEffect warnings disabled, may hide problems.
   useEffect(() => {
     const profileId = store.profileData[0]._id;

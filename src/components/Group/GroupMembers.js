@@ -2,10 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { capitalise } from "../../utils/helperFunctions";
 
 function GroupMembers(props) {
-
-  console.log(props.members)
   const membersArray = props.members
-
 
   const membersList = membersArray.map((member, index) => {
     return (
