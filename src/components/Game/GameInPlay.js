@@ -35,6 +35,7 @@ function GameInPlay() {
 
   const selectPlayer = (event) => {
     setCurrentPlayer(event.target.name)
+
   }
   
   const incrementHandler = (event) => {
@@ -84,34 +85,10 @@ function GameInPlay() {
   
   const membersList = membersArray.map((member, index) => {
     return <ListGroup.Item key={ index }>
-         <label><input type="radio" value={member} name={member} checked={member === currentPlayer} onClick={selectPlayer}/> { capitalise(member) }: {scores[member]} points</label>
+         <label><input type="radio" value={member} name={member} checked={member === currentPlayer} onChange={selectPlayer}/> { capitalise(member) }: {scores[member]} points</label>
       </ListGroup.Item>
   })
   
-  // const adjustScore = (event) => {
-  //   let playerScore = scores[currentPlayer]
-  //   let operation = addOrRemove
-  //   let amount = parseInt(event.target.value)
-  //   console.log(`Type of 'amount' = ${typeof(amount)}`)
-
-  //   let newScore
-  //   if (operation === "add") {
-  //     newScore = playerScore + amount
-  //     setScores({...scores, [currentPlayer]: newScore})
-  //   } else {
-  //     newScore = playerScore - amount
-  //     setScores({...scores, [currentPlayer]: newScore})
-  //   }
-
-  // }
-
-  // const toggleAddRemove = (event) => {
-  //   if (event.target.name === "add") {
-  //     setAddOrRemove("add")
-  //   } else {
-  //     setAddOrRemove("subtract")
-  //   }
-  // }
  
   return (
     <>
