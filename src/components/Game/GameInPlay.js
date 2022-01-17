@@ -35,7 +35,6 @@ function GameInPlay() {
 
   const selectPlayer = (event) => {
     setCurrentPlayer(event.target.name)
-
   }
   
   const incrementHandler = (event) => {
