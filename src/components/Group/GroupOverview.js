@@ -14,10 +14,6 @@ function GroupOverview() {
   const { store, dispatch } = useGlobalState();
   const [groupData, setGroupData] = useState([]);
 
-  console.log(store);
-  // console.log(groupData.data.members)
-  console.log(groupData);
-
   let groupName = null;
   let groupMembersArray = [];
   let groupPendingMembersArray = [];

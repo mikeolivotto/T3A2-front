@@ -3,9 +3,7 @@ import { capitalise } from "../../utils/helperFunctions";
 
 function GroupPendingMembers(props) {
 
-  console.log(props.members)
   const membersArray = props.members
-
 
   const membersList = membersArray.map((member) => {
     return (

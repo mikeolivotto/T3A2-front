@@ -57,7 +57,6 @@ export const updateSpecificGroup = async(groupId, idToken, username, acceptance)
         pendingMembers: pending
     }
     
-    console.log(groupDetails)
 
     // send off to the db to update the specific group
     let response = await axios.put(

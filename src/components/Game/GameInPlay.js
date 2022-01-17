@@ -18,8 +18,6 @@ function GameInPlay() {
   let pointIncrements = store.gameInPlay.gameRules.pointIncrements;
   const [increment, setIncrement] = useState(Number(pointIncrements[0]));
 
-  console.log(scores)
-
   const membersArray = store.groupData.members
   let gameName = store.gameInPlay.gameName;
 
@@ -63,7 +61,7 @@ function GameInPlay() {
       scoreboard: scores,
       datePlayed: new Date()
     }
-    console.log(updatedGameData)
+
     createGame(updatedGameData, store.idToken).then(res => {
       if (res.data.message) {
         alert(res.data.message);

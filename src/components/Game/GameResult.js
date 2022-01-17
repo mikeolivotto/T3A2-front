@@ -18,7 +18,7 @@ function GameResult() {
     })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // console.log(location)
+
     return (
       <>
       <h2>'Game result' component</h2>

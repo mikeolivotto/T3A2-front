@@ -36,8 +36,8 @@ function UserInvites() {
   }
 
 
-  const groupsList = groupArray.map((group) => {
-    return <ListGroup.Item key={group._id}>
+  const groupsList = groupArray.map((group, index) => {
+    return <ListGroup.Item key={index}>
                {capitalise(group.groupName)} <Button size="sm" name="accept" value={group._id} onClick={handleClick} >Accept</Button> <Button variant="secondary" size="sm" name="reject" value={group._id} onClick={handleClick}>
       Reject
     </Button>

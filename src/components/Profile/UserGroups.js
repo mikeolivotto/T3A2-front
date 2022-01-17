@@ -5,14 +5,11 @@ import { capitalise } from "../../utils/helperFunctions";
 
 function UserGroups() {
   const { store } = useGlobalState();
-
-  // const groupArray = store.profileData[2].concat(store.profileData[3]);
   const groupArray = store.profileData[2]
-  console.log(groupArray)
 
-  const groupsList = groupArray.map((group) => {
+  const groupsList = groupArray.map((group, index) => {
     return (
-      <ListGroup.Item key={group._id}>
+      <ListGroup.Item key={index}>
         <Link to={`/group/${group._id}`}>{capitalise(group.groupName)}</Link>
       </ListGroup.Item>
     );
