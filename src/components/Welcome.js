@@ -30,14 +30,10 @@ function Welcome() {
     <>
       <Container className="col-8 col-md-5 col-lg-5 col-xl-4 mt-5">
         <div className="d-flex justify-content-center">
-          <img
-            src="./img/logo1.png"
-            alt="Games Monarch"
-            className="img-fluid"
-          />
+          <img src="./img/logo.png" alt="Games Monarch" className="img-fluid" />
         </div>
         <div id="auth">
-          <form onSubmit={handleSubmit} className="py-4">
+          <form onSubmit={handleSubmit} className="pt-0">
             <Stack gap={2}>
               <label htmlFor="email">Email</label>
               <input
