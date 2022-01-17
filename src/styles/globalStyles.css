@@ -14,8 +14,3 @@ h2 {
   font-size: 18px;
   margin-top: 30px;
 }
-
-.link {
-  text-decoration: none;
-  color: var(--main-color);
-}
