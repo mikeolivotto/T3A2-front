@@ -194,11 +194,7 @@ function CreateGroup() {
               Submit
             </Button>
             <Link to="/">
-              <Button
-                variant="light"
-                className="button-second px-4"
-                variant="light"
-              >
+              <Button variant="light" className="button-second px-4">
                 Cancel
               </Button>
             </Link>
