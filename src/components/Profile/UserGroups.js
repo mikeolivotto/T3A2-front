@@ -10,7 +10,7 @@ function UserGroups() {
 
   const groupsList = groupArray.map((group) => {
     return (
-      <ListGroup.Item key={group._id}>
+      <ListGroup.Item action key={group._id}>
         <Link to={`/group/${group._id}`}>{capitalise(group.groupName)}</Link>
       </ListGroup.Item>
     );

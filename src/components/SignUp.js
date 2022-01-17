@@ -52,7 +52,7 @@ function SignUp() {
       <Container className="col-8 col-md-5 col-lg-5 col-xl-5 my-5">
         <div className="d-flex justify-content-center">
           <img
-            src="./img/gmlogo1.png"
+            src="./img/logo2.png"
             alt="Games Monarch"
             className="img-fluid mb-3"
           />

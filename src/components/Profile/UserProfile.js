@@ -10,6 +10,8 @@ import UserGames from "./UserGames";
 import "../../styles/profile.css";
 import Container from "react-bootstrap/Container";
 import { capitalise } from "../../utils/helperFunctions";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function UserProfile() {
   const { store, dispatch } = useGlobalState();
@@ -38,54 +40,67 @@ function UserProfile() {
 
   return (
     <>
-      <Container className="col-10 col-md-6 mb-5">
-        <div className="d-flex justify-content-center">
+      <Container className="profile-card col-10 col-md-6 col-lg-6 col-xl-6 mb-5">
+        <Row>
           <img
-            src="./img/profile-photo.png"
+            src="./img/profile3.png"
             alt="user avatar"
             className="profile-img img-fluid mb-3"
           ></img>
-        </div>
-        <h1>{store.profileData[0].username.toUpperCase()}</h1>
-        <p className="profile-name mb-2">
-          { capitalise(store.profileData[0].firstName) + " " +  capitalise(store.profileData[0].lastName)}
-        </p>
-
-        <Stack
-          direction="horizontal"
-          gap={3}
-          className="d-flex justify-content-between my-3"
-        >
-          <div className="bg-light border">Games played: {gamesPlayed}</div>
-          <div className="bg-light border">
-            Games won: {gamesWon} / {gamesWonPC}%
+          <Col className="d-flex align-items-end m-0">
+            <div>
+              <div>
+                <h2>{store.profileData[0].username.toUpperCase()}</h2>
+              </div>
+              <div>
+                <p>
+                  {capitalise(store.profileData[0].firstName) +
+                    " " +
+                    capitalise(store.profileData[0].lastName)}
+                </p>
+              </div>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <div className="d-flex justify-content-between my-3">
+            <div className="score-item">Games played: {gamesPlayed}</div>
+            <div className="score-item">
+              Games won: {gamesWon} / {gamesWonPC}%
+            </div>
+            <div className="score-item">
+              Games lost: {gamesLost} / {gamesLostPC}%
+            </div>
           </div>
-          <div className="bg-light border">
-            Games lost: {gamesLost} / {gamesLostPC}%
-          </div>
-        </Stack>
+        </Row>
+        <Row className="mt-2">
+          <h4 className="main-text">Groups you belong to:</h4>
+          {store.profileData[2] ? <UserGroups /> : "loading..."}
+        </Row>
+        <Row className="mt-4">
+          <h4 className="main-text">Pending Group Invites:</h4>{" "}
+          {<div>store.profileData[4]</div> ? (
+            <div>
+              <UserInvites />
+            </div>
+          ) : (
+            "loading..."
+          )}
+        </Row>
+        <Row className="mt-4">
+          <h4 className="main-text">Games played:</h4>
+          {store.profileData[1] && <UserGames />}
+        </Row>
 
-        <h4 className="main-text">Groups you belong to:</h4>
-        {store.profileData[2] ? <UserGroups /> : "loading..."}
-
-        <h4 className="main-text">Pending Group Invites:</h4>
-        {store.profileData[4] ? <UserInvites /> : "loading..."}
-       
-       
-        <h4 className="main-text">Games played:</h4>
-        {store.profileData[1] && <UserGames />}
-
-        <Stack gap={2} direction="horizontal" className="flex-wrap pt-4">
-          <Button className="button-main px-4">
-            <Link to="/create-group" className="second-link">
-              Create a Group
-            </Link>
-          </Button>
-          <Button variant="light" className="button-second px-4">
-            <Link to="/join-group" className="main-link">
+        <Stack direction="horizontal" gap={3} className="flex-wrap pt-4">
+          <Link to="/create-group" className="second-link">
+            <Button className="button-main px-4">Create a Group</Button>
+          </Link>
+          <Link to="/join-group" className="main-link">
+            <Button variant="light" className="button-second px-4">
               Join a Group
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Stack>
       </Container>
     </>
