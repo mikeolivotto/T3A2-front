@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGlobalState } from "../../config/store";
 import { getSpecificGame } from "../../services/apiCRUD/gameCRUD";
+import { capitalise } from "../../utils/helperFunctions";
 
 function GameResult() {
   const {store} = useGlobalState()
@@ -18,11 +19,15 @@ function GameResult() {
     })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+   const {datePlayed, gameName, winner} = gameData
 
     return (
       <>
-      <h2>'Game result' component</h2>
-      <h3>Winner is: {gameData.winner}</h3>
+      <h2>{gameName ? capitalise(gameName) : "Loading..."}</h2>
+       
+       <p>Date Played: {datePlayed ? datePlayed.split("T")[0] : "Loading..."}</p>
+      
+      <h3>Winner: {winner ? capitalise(winner) : "Loading..."}</h3> 
       </>
     );
   }
