@@ -1,14 +1,17 @@
 :root {
-  --main-color: #e1671c;
+  --main-color: #38b6ff;
+  --second-color: #004aad;
+  --light-color: #f0f0f0;
 }
 
-h1 {
-  color: var(--main-color);
+h2 {
+  color: var(--second-color);
   font-weight: bold;
   margin-bottom: 0px;
 }
 
 .main-text {
-  color: var(--main-color);
-  font-size: 2vw;
+  /* color: var(--main-color); */
+  font-size: 18px;
+  margin-top: 20%;
 }
